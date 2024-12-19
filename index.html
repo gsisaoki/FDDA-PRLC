@@ -170,8 +170,14 @@
               <h2 class="title is-3">Formula-Driven Data Augmentation (FDDA)</h2>
               <div class="level-set has-text-justified">
                 <p>
-                  FDDA is a data augmentation method that shifts each column of an OCT image according to a simple
-                  combination of $N$th-order functions.
+                  Formula-Driven Data Augmentation (FDDA) is a data augmentation method that emulates a variety of
+                  retinal structures based on mathematical formulas.
+                  It changes the the position, the tilt, and the curvature of the retina by vertically shifting each
+                  column of the OCT images according to a
+                  given mathematical formula.
+                  It increase the variability of retinal shapes in training data.
+                  Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$th-order
+                  functions.
                   In FDDA, the image center is the origin of $N$th-order functions, and the amount of pixel shift is
                   determined based on these functions.
                   Since this process only shifts the pixels by the amount of shift determined by simple functions, the
@@ -192,7 +198,7 @@
                 <img src="static/images/FDDA_images_new.jpg" style="width:480px; min-width:75%" alt="Examples of FDDA"
                   class="center-image">
                 <p style="width:480px; min-width:75%; text-align:left; margin-bottom:0; font-size:0.8em">
-                  Fig. 2. Examples of applying FDDA to OCT images in MSHC, where each of the zeroorder, first-order,
+                  Fig. 2. Examples of applying FDDA to OCT images, where each of the zeroorder, first-order,
                   and second-order shifts is applied to the input image for simplicity: (a) the zero-order shift, (b)
                   the first-order shift, (c) the second-order shift, and (d) the combined shift, and an example of
                   applying RandomAffine for comparison.
@@ -205,99 +211,116 @@
       </div>
   </section>
 
-  <section class="section hero is-small is-light" id="Content2"></section>
-  <div class="hero-body">
-    <div class="container is-max-desktop content">
-      <div class="columns is-centered">
-        <div class="column is-full">
-          <div class="content">
-            <h2 class="title is-3">Partial Retinal Layer Copying (PRLC)</h2>
-            <div class="level-set has-text-justified">
-              <p>
-                PRLC is a data augmentation method that copies a part of the retinal layers and pastes it into a region
-                outside the retinal layers.
-                The parameters in PRLC are the number of retinal layers $l$ to be copied and the width $W$ of the
-                retinal layers.
-                In this paper, $l$ is set to 1 to 3 and $W$ is set to 20 to $N_2$, which are selected at random from the
-                corresponding ranges.
-                First, the target retinal layer is randomly determined and the adjacent retinal layers are selected
-                according to $l$.
-                Next, the retinal layer region to be copied is determined according to $W$.
-                Then, we paste the above retinal layer region at a random position in the background region where no
-                retinal layer labels are assigned.
-                If there is no space in the background region to paste the retinal layer region, we repeat the process
-                from the first step.
-                When applying PRLC to volume data, the parameters and paste position are the same for each slice image,
-                and the retinal layer region copied from each slice image is pasted.
-              </p>
+  <section class="section hero is-small is-light" id="Content2">
+    <div class="hero-body">
+      <div class="container is-max-desktop content">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <div class="content">
+              <h2 class="title is-3">Partial Retinal Layer Copying (PRLC)</h2>
+              <div class="level-set has-text-justified">
+                <p>
+                  Partial Retinal Layer Copying (PRLC) is a data augmentation method that reproduces the background
+                  noise
+                  of OCT images, and reduces false detection in the background region.
+                  Specifically, PRLC copies a part of the retinal layers and pastes it into a region outside the retinal
+                  layers.
+                  The parameters in PRLC are the number of retinal layers $l$ to be copied and the width $W$ of the
+                  retinal layers.
+                  In this paper, $l$ is set to 1 to 3 and $W$ is set to 20 to $N_2$, which are selected at random from
+                  the
+                  corresponding ranges.
+                  First, the target retinal layer is randomly determined and the adjacent retinal layers are selected
+                  according to $l$.
+                  Next, the retinal layer region to be copied is determined according to $W$.
+                  Then, we paste the above retinal layer region at a random position in the background region where no
+                  retinal layer labels are assigned.
+                  If there is no space in the background region to paste the retinal layer region, we repeat the process
+                  from the first step.
+                </p>
+              </div>
+              <center>
+                <!-- <img src="static/images/PRLC_images_new.jpg" alt="Examples of PRLC" class="center-image"> -->
+                <img src="static/images/PRLC_images_new.jpg" style="width:480px; min-width:75%" alt="Examples of PRLC"
+                  class="center-image">
+                <p style="width:480px; min-width:75%; text-align:left; margin-bottom:0; font-size:0.8em">
+                  Fig. 3. Examples of applying PRLC to OCT images, where the red dashed box indicates the pasted
+                  retinal layer area.
+                  An example of applying CutMix is also shown for comparison.
+                  Colored lines on each image indicate the annotated boundaries between the retinal layers.
+                </p>
+              </center>
             </div>
-            <center>
-              <!-- <img src="static/images/PRLC_images_new.jpg" alt="Examples of PRLC" class="center-image"> -->
-              <img src="static/images/PRLC_images_new.jpg" style="width:480px; min-width:75%" alt="Examples of PRLC"
-                class="center-image">
-              <p style="width:480px; min-width:75%; text-align:left; margin-bottom:0; font-size:0.8em">
-                Fig. 3. Examples of applying PRLC to OCT images in MSHC, where the red dashed box indicates the pasted
-                retinal layer area.
-                An example of applying CutMix is also shown for comparison.
-                Colored lines on each image indicate the annotated boundaries between the retinal layers.
-              </p>
-            </center>
           </div>
         </div>
       </div>
-    </div>
-    </section>
+  </section>
 
-    <section class="section hero is-small is-light" id="Content4">
-      <div class="hero-body">
-        <div class="container is-max-desktop content">
-          <div class="columns is-centered">
-            <div class="column is-full">
-              <div class="content">
-                <h2 class="title is-3">Evaluation</h2>
-                <div class="level-set has-text-justified">
-                  <p>
-                    In this section, we demonstrate the effectiveness of the proposed method for retinal layer
-                    segmentation by applying FDDA and PRLC to FCBR and SASR.
-                    We use the OCT MS and Healthy Control (MSHC) dataset and the Duke Cyst DME (Duke DME) dataset in the
-                    experiments.
-                    The accuracy of each method is evaluated by the mean absolute distance (MAD) between the detected
-                    boundary and the ground truth.
-                  </p>
-                  <center>
-                    <p style="width:480px; min-width:75%; text-align:left; margin-bottom:0; font-size:0.8em">
-                      Table 1. Experimental results of each method for MSHC and Duke DME.
-                      The units for MAD are $\mu$m.</p>
-                    <img src="static/images/result.svg" style="width:480px; min-width:75%" alt="result"
-                      class="center-image">
-                  </center>
-                  </p>
-                </div>
+  <section class="section hero is-small" id="Content3">
+    <div class="hero-body">
+      <div class="container is-max-desktop content">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <div class="content">
+              <h2 class="title is-3">Evaluation</h2>
+              <div class="level-set has-text-justified">
+                <p>
+                  We demonstrate the effectiveness of the proposed method for retinal layer
+                  segmentation by applying FDDA and PRLC to conventional methods.
+                  We use the OCT MS and Healthy Control (MSHC) dataset and the Duke Cyst DME (Duke DME) dataset in the
+                  experiments.
+                  The accuracy of each method is evaluated by the mean absolute distance (MAD) between the detected
+                  boundary and the ground truth.
+                </p>
+                <center>
+                  <p style="width:480px; min-width:75%; text-align:left; margin-bottom:0; font-size:0.8em">
+                    Table 1. Experimental results of each method for MSHC dataset and Duke DME dataset.
+                    The units for MAD are $\mu$m.</p>
+                  <img src="static/images/result.svg" style="width:480px; min-width:75%" alt="result"
+                    class="center-image">
+                </center>
+                </p>
               </div>
             </div>
           </div>
         </div>
-    </section>
-
-    <!-- Paper poster -->
-    <section class="hero is-small is-light">
-      <div class="hero-body">
-        <div class="container">
-          <h2 class="title">Poster</h2>
-
-          <iframe src="static/images/OMIA2024_Poster_31.pdf" width="100%" height="550">
-          </iframe>
-
-        </div>
       </div>
-    </section>
-    <!--End paper poster -->
+  </section>
 
-    <!--BibTex citation -->
-    <section class="section" id="BibTeX">
-      <div class="container is-max-desktop content">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>
+  <!-- Paper poster -->
+  <!-- <section class="hero is-small"> -->
+  <section class="section hero is-small is-light" id="Content4">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">Slide</h2>
+
+        <iframe src="static/images/OMIA-31-main.pdf" width="100%" height="550">
+        </iframe>
+
+      </div>
+    </div>
+  </section>
+  <!--End paper poster -->
+
+  <!-- Paper poster -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">Poster</h2>
+
+        <iframe src="static/images/OMIA2024_Poster_31.pdf" width="100%" height="550">
+        </iframe>
+
+      </div>
+    </div>
+  </section>
+  <!--End paper poster -->
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
         @article{Konno-OMIA-2024,
           author     = "Konno, T. and Ninomiya, T. and Miura, K. and Ito, K. and Himori, N. and Sharma, P. and Nakazawa, T. and Aoki, T.",
           title      = "Formula-Driven Data Augmentation and Partial Retinal Layer Copying for Retinal Layer Segmentation",
@@ -306,39 +329,39 @@
           month      = oct
         }
       </code></pre>
-      </div>
-    </section>
-    <!--End BibTex citation -->
+    </div>
+  </section>
+  <!--End BibTex citation -->
 
 
-    <footer class="footer">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-8">
-            <div class="content">
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
 
-              <p>
-                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
-                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
-                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-                You are free to borrow the source code of this website, we just ask that you link back to this page in
-                the
-                footer. <br> This website is licensed under a <a rel="license"
-                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-                  Commons Attribution-ShareAlike 4.0 International License</a>.
-              </p>
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in
+              the
+              footer. <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
 
-            </div>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- Statcounter tracking code -->
+  <!-- Statcounter tracking code -->
 
-    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
-    <!-- End of Statcounter Code -->
+  <!-- End of Statcounter Code -->
 
 </body>
 
