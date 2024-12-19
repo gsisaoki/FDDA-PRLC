@@ -171,11 +171,10 @@
               <div class="level-set has-text-justified">
                 <p>
                   Formula-Driven Data Augmentation (FDDA) is a data augmentation method that emulates a variety of
-                  retinal structures based on mathematical formulas.
-                  It changes the the position, the tilt, and the curvature of the retina by vertically shifting each
-                  column of the OCT images according to a
-                  given mathematical formula.
-                  It increase the variability of retinal shapes in training data.
+                  retinal structures based on mathematical formulas, and increase the variability of retinal shapes in
+                  training data.
+                  FDDA changes the the position, the tilt, and the curvature of the retina by vertically shifting
+                  each column of the OCT images according to a given mathematical formula.
                   Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$th-order
                   functions.
                   In FDDA, the image center is the origin of $N$th-order functions, and the amount of pixel shift is
@@ -221,15 +220,13 @@
               <div class="level-set has-text-justified">
                 <p>
                   Partial Retinal Layer Copying (PRLC) is a data augmentation method that reproduces the background
-                  noise
-                  of OCT images, and reduces false detection in the background region.
+                  noise of OCT images, and reduces false detection in the background region.
                   Specifically, PRLC copies a part of the retinal layers and pastes it into a region outside the retinal
                   layers.
                   The parameters in PRLC are the number of retinal layers $l$ to be copied and the width $W$ of the
                   retinal layers.
                   In this paper, $l$ is set to 1 to 3 and $W$ is set to 20 to $N_2$, which are selected at random from
-                  the
-                  corresponding ranges.
+                  the corresponding ranges.
                   First, the target retinal layer is randomly determined and the adjacent retinal layers are selected
                   according to $l$.
                   Next, the retinal layer region to be copied is determined according to $W$.
