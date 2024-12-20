@@ -46,34 +46,19 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
 
-  <!-- 数式を記述するコード -->
-  <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script> -->
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css"
+    integrity="sha384-veTAhWILPOotXm+kbR5uY7dRamYLJf58I7P+hJhjeuc7hsMAkJHTsPahAl0hBST0" crossorigin="anonymous">
 
   <!-- The loading of KaTeX is deferred to speed up page rendering -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-    integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.js"
+    integrity="sha384-v6mkHYHfY/4BWq54f7lQAdtIsoZZIByznQ3ZqN38OL4KCsrxo31SLlPiak7cj/Mg"
     crossorigin="anonymous"></script>
-  <!-- To automatically render math in text elements, include the auto-render extension: -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-    integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
 
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/contrib/auto-render.min.js"
+    integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
 
 </head>
 
@@ -191,10 +176,9 @@
                   training data.
                   FDDA changes the the position, the tilt, and the curvature of the retina by vertically shifting
                   each column of the OCT images according to a given mathematical formula.
-                  Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$
-                  th-order
+                  Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$th-order
                   functions.
-                  In FDDA, the image center is the origin of $N$ th-order functions, and the amount of pixel shift is
+                  In FDDA, the image center is the origin of $N$th-order functions, and the amount of pixel shift is
                   determined based on these functions.
                   Since this process only shifts the pixels by the amount of shift determined by simple functions, the
                   labels of the OCT image after data augmentation can be easily obtained by shifting the boundary labels
@@ -376,6 +360,18 @@
   <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
   <!-- End of Statcounter Code -->
+
+  <!-- KaTeX Autorender -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false }
+        ]
+      });
+    });
+  </script>
 
 </body>
 
