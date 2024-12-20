@@ -44,7 +44,7 @@
   <script src="static/js/index.js"></script>
 
   <!-- 数式を記述するコード -->
-  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -57,7 +57,17 @@
     displayAlign: "left",
     displayIndent: "2em"
   });
-</script>
+</script> -->
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
+    crossorigin="anonymous"></script>
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
 
 </head>
 
@@ -175,9 +185,10 @@
                   training data.
                   FDDA changes the the position, the tilt, and the curvature of the retina by vertically shifting
                   each column of the OCT images according to a given mathematical formula.
-                  Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$th-order
+                  Specifically, FDDA shifts each column of an OCT image according to a simple combination of $N$
+                  th-order
                   functions.
-                  In FDDA, the image center is the origin of $N$th-order functions, and the amount of pixel shift is
+                  In FDDA, the image center is the origin of $N$ th-order functions, and the amount of pixel shift is
                   determined based on these functions.
                   Since this process only shifts the pixels by the amount of shift determined by simple functions, the
                   labels of the OCT image after data augmentation can be easily obtained by shifting the boundary labels
